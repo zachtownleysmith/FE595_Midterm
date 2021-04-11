@@ -3,9 +3,10 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.sentiment import SentimentIntensityAnalyzer
 
-# nltk.download('stopwords')
-# nltk.download('vader_lexicon')
-# nltk.download()
+nltk.download('stopwords')
+nltk.download('vader_lexicon')
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
 
 
 # Define Function for Parts of Speech Tagging
@@ -20,7 +21,7 @@ def pos_tagging(input_string, input_tags):
     elif input_tags.lower() == "noun":
         output = [(word, tag) for word, tag in tagged if tag in ("NN", "NNS", "NNP", "NNPS")]
     else:
-        output = "error"
+        output = ["", ""]
     return output
 
 
@@ -64,7 +65,7 @@ if __name__ == "__main__":
     print("")
 
     print("All POS Tags")
-    test_output = pos_tagging(input_string=test, input_tags="All")
+    test_output = pos_tagging(input_string=test, input_tags="all")
     print(test_output)
     print("")
 
@@ -76,3 +77,4 @@ if __name__ == "__main__":
     print("Sentiment")
     test_output = text_sentiment(input_string=test)
     print(test_output)
+    print(type(test_output))
