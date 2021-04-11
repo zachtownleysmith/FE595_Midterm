@@ -28,6 +28,16 @@ def serve_nlp():
                 nlp_out = text_sentiment(input_string=text)
                 dict_out = {"Sentiment": nlp_out}
 
+            elif service == 'ALL':
+                nlp_1 = pos_tagging(input_string=text, input_tags=pos_tags)
+                nlp_2 = word_freq(input_string=text)
+                nlp_3 = text_sentiment(input_string=text)
+                dict_out = {
+                    "Parts_Of_Speech": nlp_1,
+                    "Word_Frequency": nlp_2,
+                    "Sentiment": nlp_3
+                }
+
             else:
                 dict_out = {"MSG": "Requested Service not Supported"}
 
@@ -38,7 +48,17 @@ def serve_nlp():
             return "Post request must be JSON", 400
 
     elif request.method == 'GET':
-        return "Learn how to do a Post Request", 200
+        instructions = "This API performs natural language processing on POST requests. /n" \
+                       "Supported services: /n" \
+                       "   Parts of Speech Tagging /n" \
+                       "   Word Frequency Counting /n" \
+                       "   Sentiment Analysis /n" \
+                       "/n" \
+                       "Required JSON POST format: /n" \
+                       "text: (string to perform nlp on) /n" \
+                       "service: (POS, WRDFREQ, SENTIMENT, or ALL) /n" \
+                       "pos_tags: (noun, verbs, or all)"
+        return instructions, 200
     else:
         return "Request must be GET or POST", 400
 
@@ -46,6 +66,7 @@ def serve_nlp():
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8000)
     #app.run(host='127.0.0.1', port=5000)
+    #Delete
 '''
 
 test_input = {
