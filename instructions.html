@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NLP API POST INSTRUCTIONS</title>
+</head>
+<body>
+    This API performs natural language processing on POST requests.
+    Supported services:
+        Parts of Speech Tagging
+        Word Frequency Counting
+        Sentiment Analysis
+
+    Required JSON POST format:
+    {
+        text: "string to perform nlp on"
+        service: "POS, WRDFREQ, SENTIMENT, or ALL"
+        pos_tags: "noun, verbs, or all"
+    }
+</body>
+</html>

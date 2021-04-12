@@ -1,5 +1,5 @@
 from nlp_funcs import pos_tagging, word_freq, text_sentiment
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 
 app = Flask(__name__)
 
@@ -47,47 +47,19 @@ def serve_nlp():
             return "Post request must be JSON", 400
 
     elif request.method == 'GET':
-        instructions = "This API performs natural language processing on POST requests. /n" \
-                       "Supported services: /n" \
-                       "   Parts of Speech Tagging /n" \
-                       "   Word Frequency Counting /n" \
-                       "   Sentiment Analysis /n" \
-                       "/n" \
-                       "Required JSON POST format: /n" \
-                       "text: (string to perform nlp on) /n" \
-                       "service: (POS, WRDFREQ, SENTIMENT, or ALL) /n" \
-                       "pos_tags: (noun, verbs, or all)"
-        return instructions, 200
+
+        return render_template("instructions.html"), 200
     else:
         return "Request must be GET or POST", 400
 
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8000)
-    #app.run(host='127.0.0.1', port=5000)
-    #Delete
-'''
 
+'''
 test_input = {
     "service": "SENTIMENT",
     "text": "This will work really really well",
     "pos_tags": "all"
 }
-
-text = test_input['text']
-service = test_input['service']
-pos_tags = test_input['pos_tags']
-
-if service == 'POS':
-    nlp_out = pos_tagging(input_string=text, input_tags=pos_tags)
-    testing = {"Parts_Of_Speech": nlp_out}
-elif service == 'WRDFREQ':
-    nlp_out = word_freq(input_string=text)
-    testing = {"Word_Frequency": nlp_out}
-elif service == 'SENTIMENT':
-    nlp_out = text_sentiment(input_string=text)
-    testing = {"Sentiment": nlp_out}
-
-print(nlp_out)
-print(testing)
 '''
