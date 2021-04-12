@@ -6,16 +6,17 @@
 </head>
 <body>
     This API performs natural language processing on POST requests.
-    Supported services:
-        Parts of Speech Tagging
-        Word Frequency Counting
-        Sentiment Analysis
+    <br>Supported services:
+    <br><p style="margin-left: 40px">Parts of Speech Tagging </p>
+    <br><p style="margin-left: 40px">Word Frequency Counting </p>
+    <br><p style="margin-left: 40px">Sentiment Analysis </p>
+    <br>
+    <br>Required JSON POST format:
+    <br>{
+    <br><p style="margin-left: 40px">text: "string to perform nlp on" </p>
+    <br><p style="margin-left: 40px">service: "POS, WRDFREQ, SENTIMENT, or ALL" </p>
+    <br><p style="margin-left: 40px">pos_tags: "noun, verbs, or all" </p>
+    <br>}
 
-    Required JSON POST format:
-    {
-        text: "string to perform nlp on"
-        service: "POS, WRDFREQ, SENTIMENT, or ALL"
-        pos_tags: "noun, verbs, or all"
-    }
 </body>
 </html>
