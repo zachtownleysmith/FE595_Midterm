@@ -7,15 +7,14 @@ app = Flask(__name__)
 @app.route('/nlp', methods=['POST', 'GET'])
 def serve_nlp():
     if request.method == 'POST':
-        user_input = request.get_json()
-        print(user_input)
-
-        text = user_input['text']
-        service = user_input['service']
-        pos_tags = user_input['pos_tags']
 
         # For POST Requests, first check that the payload is JSON
-        if request.is_json==True:
+        if request.is_json:
+            user_input = request.get_json()
+            text = user_input['text']
+            service = user_input['service']
+            pos_tags = user_input['pos_tags']
+
             if service == 'POS':
                 nlp_out = pos_tagging(input_string=text, input_tags=pos_tags)
                 dict_out = {"Parts_Of_Speech": nlp_out}
