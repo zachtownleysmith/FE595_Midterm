@@ -2,6 +2,7 @@ import nltk
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.sentiment import SentimentIntensityAnalyzer
+from nltk import ngrams
 
 nltk.download('stopwords')
 nltk.download('vader_lexicon')
@@ -51,6 +52,13 @@ def text_sentiment(input_string):
     return output
 
 
+# Define a function for returning the n-grams of input text
+def get_ngrams(input_string, gram_count):
+    words = word_tokenize(input_string)
+    grams = list(ngrams(words, gram_count))
+    return grams
+
+
 if __name__ == "__main__":
     test = "Zach really really would like this to work"
 
@@ -77,4 +85,11 @@ if __name__ == "__main__":
     print("Sentiment")
     test_output = text_sentiment(input_string=test)
     print(test_output)
-    print(type(test_output))
+    print("")
+
+    print("N-Grams")
+    test_output = get_ngrams(input_string=test, gram_count=2)
+    print(test_output)
+
+    print(int("")+2)
+
